@@ -6,7 +6,8 @@ import NoMatching from "./NoMatching";
 import { Link, useSearchParams } from "react-router-dom";
 import MemoizedLoading from "./loader";
 import ProductList from "./productList";
-import { range } from "./range"; // Import the custom range function
+import { range } from "./range";
+import 'react-toastify/dist/ReactToastify.css';
 
 function ProductListPage() {
   const [allProducts, setAllProducts] = useState<any | null>(null);

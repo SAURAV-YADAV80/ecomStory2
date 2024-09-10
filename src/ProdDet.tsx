@@ -4,6 +4,7 @@ import { getProductData } from "./api";
 import NotFound from "./NotFound";
 import BackButton from "./BackButton";
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import MemoizedLoading from "./loader";
 import withRouter from "./withRouter";
 import { withCart } from "./withProvider";

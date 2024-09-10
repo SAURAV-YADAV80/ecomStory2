@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import Input from './Input';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css"
 import { withUser } from './withProvider';
 
 function LogIn({setUser}) {

@@ -1,5 +1,5 @@
 import React from "react";
-
+import 'react-toastify/dist/ReactToastify.css';
 // Define the types for the props
 interface Product {
   id: number;
