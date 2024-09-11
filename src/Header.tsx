@@ -52,13 +52,20 @@ function Header({ countCart, user, setUser }: HeaderProps) {
             </button>
           )}
           <Link to="/Catalogue" className="relative flex items-center">
-            <svg
-              className="w-16 text-gray-600 hover:text-blue-500 transition-colors duration-150"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-            >
-              <path d="M7 4V2h10v2h-1.197L14 4H10L8.197 6H7v2H6V6H4v12h2v-2h10v2h2V6h-2V4h-1.197L14 2H10l-1.803 2H7zm1 10H6v2h2v-2zm8 0h-2v2h2v-2zm-6 0H8v2h2v-2zm1-8h2V4h-2v2zm-4 0h2V4H8v2zm4 6H8v2h4v-2z" />
-            </svg>
+          <svg
+  className="w-12 text-gray-600 hover:text-blue-500 transition-colors duration-150"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  strokeWidth="2"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+>
+  <path d="M4 4h2l3 9h11l3-9H6" />
+  <circle cx="8" cy="19" r="1" />
+  <circle cx="16" cy="19" r="1" />
+</svg>
             {countCart >= 0 && (
               <p className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">
                 {countCart}
