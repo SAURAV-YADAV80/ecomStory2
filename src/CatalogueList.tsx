@@ -63,7 +63,7 @@ const CatalogueList: React.FC<CatalogueListProps> = ({ cart, updateCart, setNewT
   const classText = dirty ? " text-white bg-red-500 " : " text-gray-200 bg-red-200 ";
 
   return (
-    <div className="w-full max-w-6xl mx-auto mt-4 p-4 bg-white">
+    <div className="w-full max-w-6xl mx-auto mt-4 bg-white">
       <BackButton />
       {cart.length === 0 ? (
         <div className="text-center flex justify-center items-center text-gray-600 h-[300px] my-8">

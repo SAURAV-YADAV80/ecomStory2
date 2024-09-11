@@ -54,7 +54,7 @@ const LogueItem: React.FC<LogueItemProps> = ({ product, quantity, onRemove, onCh
           min="1"
           value={quantity}
           onChange={handleChange}
-          className="w-24 border border-gray-300 rounded p-1 text-center" // Adjusted width here
+          className="w-20 border border-gray-300 rounded p-1 text-center" // Adjusted width here
         />
       </span>
       <span className="w-1/5 text-center text-gray-600">${subtotal}</span>
