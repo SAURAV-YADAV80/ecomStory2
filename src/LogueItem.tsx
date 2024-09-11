@@ -1,5 +1,4 @@
 import React from "react";
-import 'react-toastify/dist/ReactToastify.css';
 
 interface Product {
   id: number;
@@ -27,9 +26,9 @@ const LogueItem: React.FC<LogueItemProps> = ({ product, quantity, onRemove, onCh
   const subtotal = (product.price * quantity).toFixed(2);
 
   return (
-    <div className="hidden sm:flex justify-between items-center bg-white border-gray-300 border">
-      <span className="flex items-center w-40p sm:w-50p text-start">
-        <button className="p-4" onClick={handleRemove}>
+    <div className="flex items-center justify-between border-b border-l border-r border-gray-300 p-4 bg-white">
+      <span className="flex items-center w-2/5">
+        <button className="mr-4 p-2" onClick={handleRemove}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -40,25 +39,25 @@ const LogueItem: React.FC<LogueItemProps> = ({ product, quantity, onRemove, onCh
           </svg>
         </button>
         <img
-          className="w-20 h-16 py-[4px]"
+          className="w-20 h-16 object-cover"
           src="https://images.pexels.com/photos/2536965/pexels-photo-2536965.jpeg?auto=compress&cs=tinysrgb&w=600"
           alt={product.title}
         />
-        <p className="ml-4 text-red-600 font-bold w-full truncate">
+        <p className="ml-4 text-red-600 font-bold truncate w-full">
           {product.title}
         </p>
       </span>
-      <span className="w-20p text-center">${product.price.toFixed(2)}</span>
-      <div className="w-20p flex justify-center">
+      <span className="w-1/5 text-center text-gray-600">${product.price.toFixed(2)}</span>
+      <span className="w-1/5 text-center">
         <input
-          className="w-12 h-6 text-center border-gray-200 border"
           type="number"
           min="1"
           value={quantity}
           onChange={handleChange}
+          className="w-24 border border-gray-300 rounded p-1 text-center" // Adjusted width here
         />
-      </div>
-      <span className="w-[15%] text-center">${subtotal}</span>
+      </span>
+      <span className="w-1/5 text-center text-gray-600">${subtotal}</span>
     </div>
   );
 };
