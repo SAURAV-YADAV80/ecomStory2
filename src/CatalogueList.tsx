@@ -105,16 +105,16 @@ const CatalogueList: React.FC<CatalogueListProps> = ({ cart, updateCart, setNewT
             <div className="flex flex-col sm:flex-row items-start sm:items-center">
               <input
                 type="text"
-                className="m-2 p-2 border border-gray-300 rounded max-w-xs sm:max-w-md"
+                className="m-2 p-2 border border-gray-300 rounded w-full sm:max-w-xs"
                 placeholder="Coupon Code"
               />
-              <button className="m-2 px-8 py-2 bg-red-500 rounded-md text-white font-bold hover:bg-red-600 max-w-xs sm:max-w-md">
+              <button className="m-2 px-8 py-2 bg-red-500 rounded-md text-white font-bold hover:bg-red-600 w-full sm:max-w-xs">
                 APPLY COUPON
               </button>
             </div>
             <button
               onClick={handleUpdate}
-              className={`m-2 px-8 py-2 rounded-md font-bold ${classText} max-w-xs sm:max-w-md`}
+              className={`m-2 px-8 py-2 rounded-md font-bold ${classText} w-full sm:w-auto sm:max-w-xs`}
             >
               UPDATE CART
             </button>
@@ -122,7 +122,7 @@ const CatalogueList: React.FC<CatalogueListProps> = ({ cart, updateCart, setNewT
         </>
       )}
     </div>
-  );
+  );  
 };
 
 export default withCart(CatalogueList);
