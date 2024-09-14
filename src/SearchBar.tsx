@@ -1,6 +1,5 @@
 import React, { ChangeEventHandler } from 'react';
 
-// Define the props interface
 interface SearchBarProps {
   handleChange: ChangeEventHandler<HTMLInputElement>;
   query: string;

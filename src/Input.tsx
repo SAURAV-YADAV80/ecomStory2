@@ -15,7 +15,6 @@ const Input: React.FC<InputProps> = ({ label, id, type = 'text', placeholder, re
   const { value, onChange, onBlur } = field;
   const { error, touched } = meta;
 
-  // Determine border color based on error and touch status
   const borderColor = touched 
     ? (error ? 'border-red-500 focus:border-red-500' : 'border-gray-300 focus:border-blue-500')
     : 'border-gray-300 focus:border-blue-500';
@@ -36,7 +35,7 @@ const Input: React.FC<InputProps> = ({ label, id, type = 'text', placeholder, re
         name={id}
         type={type}
         placeholder={placeholder}
-        required={required} // Apply the required attribute
+        required={required}
         className={`border rounded-md p-3 text-gray-900 placeholder-gray-500 bg-red-50 ${borderColor} focus:outline-none focus:ring-1 ${touched ? 'focus:ring-red-200' : 'focus:ring-blue-200'}`}
         {...rest}
       />

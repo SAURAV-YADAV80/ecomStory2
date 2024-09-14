@@ -50,7 +50,6 @@ const SignUp: React.FC<SignUpProps> = ({setUser}) => {
     });
   }
 
-  // Yup for validation
   const schema = Yup.object().shape({
     username: Yup.string().min(3, 'Must be at least 3 characters').required('Required'),
     name: Yup.string().required('Required'),

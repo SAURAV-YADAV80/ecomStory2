@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// Define the props interface
 interface ProductProps {
   thumbnail: string;
   category: string;

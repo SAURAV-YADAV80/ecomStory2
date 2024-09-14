@@ -10,7 +10,6 @@ import withRouter from "./withRouter";
 import { withCart } from "./withProvider";
 import { Product } from "./types/Products";
 
-// Define the component props interface
 interface ProdDetProps  {
   match: {
     params: {
@@ -22,7 +21,6 @@ interface ProdDetProps  {
   updateCart: (items: Array<{ product: Product; quantity: number }>) => void;
 }
 
-// Define the component state interface
 interface ProdDetState {
   prod: Product | null;
   count: number;
@@ -196,5 +194,4 @@ class ProdDet extends Component<ProdDetProps, ProdDetState> {
   }
 }
 
-// Export the component with the HOCs applied
 export default withRouter(withCart(ProdDet));

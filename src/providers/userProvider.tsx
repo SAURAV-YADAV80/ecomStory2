@@ -3,7 +3,7 @@ import axios from 'axios';
 import MemoizedLoading from "../loader";
 import { UserContext } from "../Contexts";
 
-// Define the props type
+
 interface UserProviderProps {
   children: ReactNode;
 }
@@ -22,8 +22,6 @@ export type UserContextType = {
   user: User | null;   
   setUser: (user: User | null) => void;
 };
-
-
 
 
 function UserProvider({ children }: UserProviderProps) {

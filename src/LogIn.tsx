@@ -41,7 +41,6 @@ const LogIn: React.FC<LogInProps> = ({ setUser }) => {
     });
   };
 
-  // Yup for validation
   const schema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Required'),
     password: Yup.string().min(8, 'Must be at least 8 characters').required('Required')

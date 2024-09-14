@@ -3,9 +3,8 @@ import { withUser } from './withProvider';
 import { ReactNode } from 'react';
 import { User, UserContextType } from './providers/userProvider';
 
-// Define the type for the UserRoute props
 interface UserRouteProps extends UserContextType{
-  user: User; // Change 'any' to the specific type for your user object if available
+  user: User;
   children: ReactNode;
 }
 

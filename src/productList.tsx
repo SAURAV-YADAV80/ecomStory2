@@ -5,7 +5,6 @@ interface ProductType {
   title: string;
   category: string;
   price: number;
-  // Add other product fields if necessary
 }
 
 interface ProductListProps {

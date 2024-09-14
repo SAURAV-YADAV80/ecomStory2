@@ -29,7 +29,7 @@ interface CatalogueListProps extends CartContextType {
       return acc + cartItem.product.price * quantity;
     }, 0);
 
-    setNewTotal(total); // Use setNewTotal here
+    setNewTotal(total);
   }, [cart, quantityMap, setNewTotal]);
 
   const handleRemove = (productId: number) => {

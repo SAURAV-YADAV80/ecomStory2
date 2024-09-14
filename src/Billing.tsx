@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { UserContextType } from './providers/userProvider';
 import { withUser } from './withProvider';
 
-// Define the props interface
 interface BillingProps extends UserContextType {
   newTotal: number;
 }

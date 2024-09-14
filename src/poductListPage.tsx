@@ -75,7 +75,6 @@ const ProductListPage: React.FC = () => {
 
   return (
     <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 my-16 py-12 bg-white shadow-2xl rounded-lg">
-      {/* Search and Sort Section */}
       <div className="w-full flex flex-col sm:flex-row justify-start md:ml-[55px] items-center mb-8 space-y-4 sm:space-y-0">
         <SearchBar
           handleChange={handleChange}
@@ -88,7 +87,6 @@ const ProductListPage: React.FC = () => {
         />
       </div>
 
-      {/* Product List or No Matching */}
       <div className="flex flex-col items-center w-full">
         <div className="w-full min-h-[60vh] flex items-center justify-center">
           {allProducts && allProducts.data.length > 0 ? (
@@ -99,7 +97,6 @@ const ProductListPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Pagination */}
       <div className="flex justify-center gap-x-1 mt-8">
         {allProducts && allProducts.meta.last_page ? (
           range(1, allProducts.meta.last_page + 1).map((pageNo) => (
