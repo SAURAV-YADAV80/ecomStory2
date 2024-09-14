@@ -9,12 +9,12 @@ interface UserProviderProps {
 }
 
 export type User = {
-  created_at: string;
+  created_at?: string;
   email: string;         
   full_name: string;     
-  id: number;        
-  remember_me_token: string | null; 
-  updated_at: string;
+  id?: number;        
+  remember_me_token?: string | null; 
+  updated_at?: string;
 };
 
 export type UserContextType = {
