@@ -3,16 +3,38 @@ import { saveCart, getCart, getProductsByIds } from "../api";
 import MemoizedLoading from "../loader";
 import { withUser } from "../withProvider";
 import { CartContext } from "../Contexts";
+import { Product } from "../types/Products";
+import { UserContextType } from "./userProvider";
 
-// Define types for props
-interface CartProviderProps {
+interface CartProviderProps extends UserContextType {
   isLoggedIn: boolean;
   children: ReactNode;
-  setAlert: (message: string) => void;
 }
 
+type CartItem = {
+  product: Product;
+  quantity: number;
+};
+
+type SavedCartData = {
+  [productId: number]: number;
+};
+
+export type Cart = CartItem[];
+
+
+export type CartContextType = {
+  cart: Cart;
+  countCart:number;
+  updateCart: (newCart:Cart) => void;
+  addToCart: (productId: number, newCount: number) => void;
+  removeFromCart: (productId: number) => void;
+  handleChange: (productId: number, newQuantity: number) => void;
+};
+
+
 function CartProvider({ isLoggedIn, children }: CartProviderProps) {
-  const [cart, setCart] = useState<any[]>([]);
+  const [cart, setCart] = useState<Cart>([]);
   const [loading, setLoading] = useState(false);
   const [dirty, setDirty] = useState(false);
 
@@ -24,8 +46,8 @@ function CartProvider({ isLoggedIn, children }: CartProviderProps) {
         setLoading(false);
       });
     } else {
-      const savedData = JSON.parse(localStorage.getItem("cart") || "{}");
-      const productIds = Object.keys(savedData).map(id => parseInt(id, 10)); // Convert IDs to numbers
+      const savedData:SavedCartData = JSON.parse(localStorage.getItem("cart") || "{}");
+      const productIds = Object.keys(savedData).map(id => parseInt(id, 10));
 
       getProductsByIds(productIds).then((products) => {
         const savedCart = products.map((p) => ({
@@ -38,7 +60,7 @@ function CartProvider({ isLoggedIn, children }: CartProviderProps) {
     }
   }, [isLoggedIn]);
 
-  function updateCart(newCart: any[]) {
+  function updateCart(newCart: Cart) {
     setCart(newCart);
     setDirty(false);
 

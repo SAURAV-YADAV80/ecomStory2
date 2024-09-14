@@ -1,21 +1,18 @@
 import  { memo } from "react";
 import { Link } from "react-router-dom";
 import { withCart, withUser } from "./withProvider";
+import { UserContextType } from "./providers/userProvider";
+import { CartContextType } from "./providers/cartProvider";
 
-interface User {
-  full_name: string;
-}
 
-interface HeaderProps {
+interface HeaderProps extends CartContextType, UserContextType{
   countCart: number;
-  user?: User;
-  setUser: (user: User | undefined) => void;
 }
 
 function Header({ countCart, user, setUser }: HeaderProps) {
   function handleLogout() {
     localStorage.removeItem("token");
-    setUser(undefined);
+    setUser(null);
   }
 
   return (

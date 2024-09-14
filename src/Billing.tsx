@@ -1,18 +1,20 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import withUser from './withUser';
+import { UserContextType } from './providers/userProvider';
+import { withUser } from './withProvider';
 
 // Define the props interface
+interface BillingProps extends UserContextType {
+  newTotal: number;
+}
 
-
-const Billing: React.FC<any> = ({ newTotal, user, isLoggedIn, setUser }) => {
+const Billing: React.FC<BillingProps> = ({ newTotal, isLoggedIn, user }) => {
   const navigate = useNavigate();
 
   function handlePurchase() {
     console.log(user);
     if (isLoggedIn) {
       navigate('/');
-      console.log('User is logged in');
       alert('Your purchases are successful');
     } else {
       navigate('/LogIn');

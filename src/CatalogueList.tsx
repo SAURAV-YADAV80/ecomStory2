@@ -3,17 +3,15 @@ import BackButton from "./BackButton";
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import LogueItem from "./LogueItem";
-import SmLogue from "./SmLogue";
+import SmLogue from "./smLogue";
+import { CartContextType } from "./providers/cartProvider";
 import { withCart } from "./withProvider";
 
-// Define prop types for the component
-interface CatalogueListProps {
-  cart: Array<any>;
-  updateCart: (updatedCart: Array<any>) => void;
+interface CatalogueListProps extends CartContextType {
   setNewTotal: (total: number) => void;
 }
 
-const CatalogueList: React.FC<CatalogueListProps> = ({ cart, updateCart, setNewTotal }) => {
+  const CatalogueList: React.FC<CatalogueListProps> = ({ cart, updateCart, setNewTotal }) => {// Include setNewTotal in props
   const [quantityMap, setQuantityMap] = useState<Record<number, number>>({});
   const [dirty, setDirty] = useState(false);
 
@@ -31,7 +29,7 @@ const CatalogueList: React.FC<CatalogueListProps> = ({ cart, updateCart, setNewT
       return acc + cartItem.product.price * quantity;
     }, 0);
 
-    setNewTotal(total);
+    setNewTotal(total); // Use setNewTotal here
   }, [cart, quantityMap, setNewTotal]);
 
   const handleRemove = (productId: number) => {

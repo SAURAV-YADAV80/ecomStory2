@@ -1,13 +1,13 @@
-import  { useContext } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import Input from './Input';
 import axios from 'axios';
-import { UserContext } from './Contexts';
 import { saveCart } from './api';
+import { withUser } from './withProvider';
+import { UserContextType } from './providers/userProvider';
 
-// Define the shape of form values
 interface SignUpValues {
   username: string;
   name: string;
@@ -16,9 +16,12 @@ interface SignUpValues {
   confirmPassword: string;
 }
 
-function SignUp() {
+interface SignUpProps extends UserContextType {
+
+}
+
+const SignUp: React.FC<SignUpProps> = ({setUser}) => {
   const navigate = useNavigate();
-  const { setUser } = useContext(UserContext);
 
   function handleSignUp() {
     const localData = JSON.parse(localStorage.getItem('cart') || '[]');
@@ -127,4 +130,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default withUser(SignUp);

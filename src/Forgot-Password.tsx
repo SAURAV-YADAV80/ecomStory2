@@ -3,7 +3,6 @@ import { Formik, Form, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import Input from './Input';
 
-// Define a type for the form values
 interface ForgotPasswordFormValues {
   email: string;
 }
@@ -19,7 +18,7 @@ function ForgotPassword() {
 
   const resetPassword = (values: ForgotPasswordFormValues, actions: FormikHelpers<ForgotPasswordFormValues>) => {
     console.log("sending password reset request to", values.email);
-    actions.setSubmitting(false); // Don't forget to set submitting to false
+    actions.setSubmitting(false);
   };
 
   return (
@@ -39,7 +38,7 @@ function ForgotPassword() {
                   id='email'
                   label='Email'
                   placeholder='Enter email'
-                  required // This should work now
+                  required 
                 />
               </div>
               <button

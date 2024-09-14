@@ -8,11 +8,29 @@ import 'react-toastify/dist/ReactToastify.css';
 import MemoizedLoading from "./loader";
 import withRouter from "./withRouter";
 import { withCart } from "./withProvider";
+import { Product } from "./types/Products";
 
 // Define the component props interface
+interface ProdDetProps  {
+  match: {
+    params: {
+      id: string;
+    };
+  };
+  cart: Array<{ product: Product; quantity: number }>;
+  addToCart: (id: number, quantity: number) => void;
+  updateCart: (items: Array<{ product: Product; quantity: number }>) => void;
+}
 
-class ProdDet extends Component<any, any> {
-  constructor(props: any) {
+// Define the component state interface
+interface ProdDetState {
+  prod: Product | null;
+  count: number;
+  loading: boolean;
+}
+
+class ProdDet extends Component<ProdDetProps, ProdDetState> {
+  constructor(props: ProdDetProps) {
     super(props);
     this.state = {
       prod: null,
@@ -25,7 +43,7 @@ class ProdDet extends Component<any, any> {
     this.fetchProductData();
   }
 
-  componentDidUpdate(prevProps: any) {
+  componentDidUpdate(prevProps: ProdDetProps) {
     const { id } = this.props.match.params;
     if (prevProps.match.params.id !== id) {
       this.fetchProductData();
@@ -164,16 +182,19 @@ class ProdDet extends Component<any, any> {
               </Link>
             )}
           </div>
-          <Link
-            className="text-white bg-red-500 px-3 py-1 rounded-md"
-            to={`/ProdDet/${+id + 1}`}
-          >
-            Next
-          </Link>
+          <div>
+            <Link
+              className="text-white bg-red-500 px-3 py-1 rounded-md"
+              to={`/ProdDet/${+id + 1}`}
+            >
+              Next
+            </Link>
+          </div>
         </div>
       </div>
     );
   }
 }
 
-export default withCart(withRouter(ProdDet));
+// Export the component with the HOCs applied
+export default withRouter(withCart(ProdDet));

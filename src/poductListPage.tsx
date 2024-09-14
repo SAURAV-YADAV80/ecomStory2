@@ -8,17 +8,34 @@ import MemoizedLoading from "./loader";
 import ProductList from "./productList";
 import { range } from "./range";
 import 'react-toastify/dist/ReactToastify.css';
+import { Product } from "./types/Products";
 
-function ProductListPage() {
-  const [allProducts, setAllProducts] = useState<any | null>(null);
+interface PaginationMeta {
+  current_page: number;
+  first_page: number;
+  first_page_url: string;
+  last_page: number;
+  last_page_url: string;
+  next_page_url: string | null;
+  per_page: number;
+  previous_page_url: string | null;
+  total: number;
+}
+
+export interface ProductListResponse {
+  data: Product[];
+  meta: PaginationMeta;
+}
+
+const ProductListPage: React.FC = () => {
+  const [allProducts, setAllProducts] = useState<ProductListResponse | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [searchParams, setSearchParams] = useSearchParams();
   const params = Object.fromEntries(searchParams.entries());
 
   let { query, sort } = params;
-  let page = +params.page;
+  let page = +params.page || 1;
 
-  page = +page || 1;
   query = query || "";
   sort = sort || "default";
 
@@ -35,10 +52,15 @@ function ProductListPage() {
       sortType = "desc";
     }
 
-    getProductList(sortBy, query, +page, sortType).then((products) => {
-      setAllProducts(products);
-      setLoading(false);
-    });
+    getProductList(sortBy, query, page, sortType)
+      .then((response: ProductListResponse) => {
+        setAllProducts(response);
+        setLoading(false);
+      })
+      .catch(() => {
+        // Handle error
+        setLoading(false);
+      });
   }, [sort, query, page]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => 
@@ -69,7 +91,7 @@ function ProductListPage() {
       {/* Product List or No Matching */}
       <div className="flex flex-col items-center w-full">
         <div className="w-full min-h-[60vh] flex items-center justify-center">
-          {allProducts?.data.length > 0 ? (
+          {allProducts && allProducts.data.length > 0 ? (
             <ProductList products={allProducts.data} />
           ) : (
             <NoMatching />
@@ -79,19 +101,23 @@ function ProductListPage() {
 
       {/* Pagination */}
       <div className="flex justify-center gap-x-1 mt-8">
-        {range(1, allProducts?.meta.last_page + 1).map((pageNo) => (
-          <Link
-            key={pageNo}
-            to={`?${new URLSearchParams({ ...params, page: pageNo.toString() })}`}
-            className={`px-3 py-1 rounded ${
-              pageNo === page
-                ? "bg-red-500 text-white"
-                : "bg-gray-200 text-gray-800 hover:bg-gray-300"
-            } transition-colors duration-150`}
-          >
-            {pageNo}
-          </Link>
-        ))}
+        {allProducts && allProducts.meta.last_page ? (
+          range(1, allProducts.meta.last_page + 1).map((pageNo) => (
+            <Link
+              key={pageNo}
+              to={`?${new URLSearchParams({ ...params, page: pageNo.toString() })}`}
+              className={`px-3 py-1 rounded ${
+                pageNo === page
+                  ? "bg-red-500 text-white"
+                  : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+              } transition-colors duration-150`}
+            >
+              {pageNo}
+            </Link>
+          ))
+        ) : (
+          <p>No pages available</p>
+        )}
       </div>
     </div>
   );

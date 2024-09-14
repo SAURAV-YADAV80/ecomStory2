@@ -1,8 +1,8 @@
 import React from "react";
 
 interface PagenoProps {
-  onClick: () => void;  // Function type for the click handler
-  no: number;           // Number type for the page number
+  onClick: () => void; 
+  no: number;          
 }
 
 const Pageno: React.FC<PagenoProps> = ({ onClick, no }) => {

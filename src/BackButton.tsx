@@ -1,9 +1,7 @@
 import { Link } from 'react-router-dom';
 import { memo } from 'react';
 
-const BackButton = () => {
-  // const navigate = useNavigate();
-
+const BackButton: React.FC = () => {
   return (
     <Link
       to='/'

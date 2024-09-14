@@ -1,16 +1,16 @@
 import axios from 'axios';
-
-// Define types for API responses and function parameters
+import { Product } from './types/Products';
+import { ProductListResponse } from './poductListPage';
 
 // Function to get product data by ID
-export function getProductData(id: number): Promise<any> {
-  return axios.get(`https://myeasykart.codeyogi.io/product/${id}`).then(res => res.data);
+export function getProductData(id: number): Promise<Product> {
+  return axios.get<Product>(`https://myeasykart.codeyogi.io/product/${id}`).then(res => res.data);
 }
 
 // Function to get products by their IDs
-export function getProductsByIds(ids: number[]): Promise<any[]> {
+export function getProductsByIds(ids: number[]): Promise<Product[]> {
   const commaIds = ids.join();
-  return axios.get("https://myeasykart.codeyogi.io/products/bulk", {
+  return axios.get<Product[]>("https://myeasykart.codeyogi.io/products/bulk", {
     params: {
       ids: commaIds,
     }
@@ -23,8 +23,8 @@ export function getProductList(
   search?: string,
   page?: number,
   sortType?: 'asc' | 'desc'
-): Promise<any[]> {
-  let params: Record<string, any> = {};
+): Promise<ProductListResponse> {
+  let params: Record<string, string | undefined> = {};
 
   if (sortBy) {
     params.sortBy = sortBy;
@@ -34,9 +34,10 @@ export function getProductList(
     params.search = search;
   }
   if (page) {
-    params.page = page;
+    params.page = page.toString();
   }
-  return axios.get("https://myeasykart.codeyogi.io/products", {
+  
+  return axios.get<ProductListResponse>("https://myeasykart.codeyogi.io/products", {
     params,
   }).then(response => response.data);
 }

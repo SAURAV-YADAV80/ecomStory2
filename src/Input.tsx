@@ -2,7 +2,15 @@ import React from 'react';
 import { useField } from 'formik';
 
 
-const Input: React.FC<any> = ({ label, id, type = 'text', placeholder, required, ...rest }) => {
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label: string;
+  id: string;
+  placeholder?: string;
+  required?: boolean;
+}
+
+const Input: React.FC<InputProps> = ({ label, id, type = 'text', placeholder, required, ...rest }) => {
+  console.log("Input", label, id, type, placeholder, required, ...rest as any);
   const [field, meta] = useField({ name: id });
   const { value, onChange, onBlur } = field;
   const { error, touched } = meta;

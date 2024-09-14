@@ -6,7 +6,7 @@ type ContextProvider<T> = React.Context<T | undefined>;
 
 // HOC withProvider
 const withProvider = <T,>(provider: ContextProvider<T>) => {
-  return <P extends T>(IncomingComponent: ComponentType<P>) => {
+  return <P extends Omit<T, keyof P>>(IncomingComponent: ComponentType<P>) => {
     return (props: Omit<P, keyof T>) => {
       const contextData = useContext(provider);
 

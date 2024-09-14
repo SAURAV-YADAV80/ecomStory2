@@ -8,18 +8,27 @@ interface UserProviderProps {
   children: ReactNode;
 }
 
-// Define the user data type
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  [key: string]: any; // Extendable for additional user properties
-}
+export type User = {
+  created_at: string;
+  email: string;         
+  full_name: string;     
+  id: number;        
+  remember_me_token: string | null; 
+  updated_at: string;
+};
+
+export type UserContextType = {
+  isLoggedIn: boolean;
+  user: User | null;   
+  setUser: (user: User | null) => void;
+};
+
+
+
 
 function UserProvider({ children }: UserProviderProps) {
   const [user, setUser] = useState<User | null>(null);
   const [loadingUser, setLoadingUser] = useState(true);
-
   const token = localStorage.getItem("token");
 
   useEffect(() => {

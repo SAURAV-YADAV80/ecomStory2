@@ -1,6 +1,12 @@
-import { memo } from 'react';
+import React, { ChangeEvent, memo } from 'react';
 
-function Dropdown({ handleSortChange, sort }) {
+interface DropdownProps {
+  sort: string;
+  handleSortChange: (event: ChangeEvent<HTMLSelectElement>) => void;
+}
+
+const Dropdown: React.FC<DropdownProps> = ({ handleSortChange, sort }) => {
+
   return (
     <div className="relative inline-block w-full max-w-xs">
       <select 
@@ -17,7 +23,7 @@ function Dropdown({ handleSortChange, sort }) {
       </select>
     </div>
   );
-}
+};
 
-const newDrop = memo(Dropdown);
-export default newDrop;
+const MemoizedDropdown = memo(Dropdown);
+export default MemoizedDropdown;

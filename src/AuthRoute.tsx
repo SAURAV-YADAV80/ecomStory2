@@ -1,8 +1,13 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import withUser from './withUser';
+import { UserContextType } from './providers/userProvider';
+import { withUser } from './withProvider';
 
-const AuthRoute: React.FC<any> = ({ user, children }) => {
+interface AuthRouteProps extends UserContextType{
+  children: React.ReactNode;
+};
+
+const AuthRoute: React.FC<AuthRouteProps> = ({ user, children }) => {
   if (user) {
     return <Navigate to="/" />;
   }

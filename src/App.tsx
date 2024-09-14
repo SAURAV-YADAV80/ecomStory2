@@ -11,7 +11,6 @@ import ForgotPassword from './Forgot-Password';
 import SignUp from './SignUp';
 import NotFound from './NotFound';
 import MemoizedFooter from './Footer';
-import { ToastContainer } from 'react-toastify';
 
 const App: React.FC = () => {
   return (
