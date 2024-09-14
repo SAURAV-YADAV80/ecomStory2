@@ -1,7 +1,6 @@
 import React from 'react';
 import { useField } from 'formik';
 
-
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
   id: string;
@@ -10,7 +9,8 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Input: React.FC<InputProps> = ({ label, id, type = 'text', placeholder, required, ...rest }) => {
-  console.log("Input", label, id, type, placeholder, required, ...rest as any);
+  console.log("Input", label, id, type, placeholder, required, rest);
+  
   const [field, meta] = useField({ name: id });
   const { value, onChange, onBlur } = field;
   const { error, touched } = meta;
@@ -37,7 +37,7 @@ const Input: React.FC<InputProps> = ({ label, id, type = 'text', placeholder, re
         placeholder={placeholder}
         required={required}
         className={`border rounded-md p-3 text-gray-900 placeholder-gray-500 bg-red-50 ${borderColor} focus:outline-none focus:ring-1 ${touched ? 'focus:ring-red-200' : 'focus:ring-blue-200'}`}
-        {...rest}
+        {...(rest as React.InputHTMLAttributes<HTMLInputElement>)}
       />
       {touched && error && <div className="text-red-500 text-sm">{error}</div>}
     </div>
