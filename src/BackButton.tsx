@@ -1,13 +1,14 @@
 import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
+import './BackButton.css';
 
 interface BackButtonProps {
-  bgColor?: string;
-  fontSize?: string;
+  bgColor?: 'bg-red' | 'bg-blue' | 'bg-green';
+  fontSize?: 'text-sm' | 'text-base' | 'text-lg' | 'text-xl';
 }
 
-const BackButton: React.FC<BackButtonProps> = ({ bgColor, fontSize }) => {
-  const buttonClasses = `${bgColor || 'bg-red-500'} ${fontSize || 'text-base'} px-3 py-1 rounded-md text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400`;
+const BackButton: React.FC<BackButtonProps> = ({ bgColor = 'bg-red', fontSize = 'text-base' }) => {
+  const buttonClasses = `back-button ${bgColor} ${fontSize}`;
 
   return (
     <Link
@@ -20,6 +21,4 @@ const BackButton: React.FC<BackButtonProps> = ({ bgColor, fontSize }) => {
   );
 };
 
-const MemoizedBackButton = memo(BackButton);
-
-export default MemoizedBackButton;
+export default memo(BackButton);

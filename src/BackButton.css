@@ -1,0 +1,46 @@
+.back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .back-button.bg-red {
+    background-color: #ef4444;
+    color: white;
+  }
+  
+  .back-button.bg-blue {
+    background-color: #3b82f6;
+    color: white;
+  }
+  
+  .back-button.bg-green {
+    background-color: #10b981;
+    color: white;
+  }
+  
+  .back-button.text-sm {
+    font-size: 12px;
+  }
+  
+  .back-button.text-base {
+    font-size: 16px;
+  }
+  
+  .back-button.text-lg {
+    font-size: 20px;
+  }
+  
+  .back-button.text-xl {
+    font-size: 24px;
+  }
+  
+  .back-button:hover {
+    opacity: 0.8;
+  }
+  
