@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Footer from './Footer';
 
-// Meta configuration for Storybook
 const meta: Meta<typeof Footer> = {
   title: 'Components/Footer',
+  tags: ['autodocs'],
   component: Footer,
   parameters: {
-    layout: 'centered', // Center the component in Storybook
+    layout: 'centered',
     backgrounds: {
-      default: 'light', // Set the background to light for better visibility
+      default: 'light',
       values: [
         { name: 'light', value: '#f0f0f0' },
         { name: 'dark', value: '#333' },
@@ -34,6 +34,14 @@ const meta: Meta<typeof Footer> = {
       control: 'text',
       defaultValue: '0px',
     },
+    titleText: {
+      control: 'text',
+      defaultValue: 'Copyright © 2022 | Saurav',
+    },
+    subtitleText: {
+      control: 'text',
+      defaultValue: 'Powered by Saurav Yadav',
+    },
   },
 };
 
@@ -41,22 +49,22 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-// Define the default Story with customizable props
 export const Default: Story = {
   args: {
-    backgroundColor: '#f9fafb',
-    textColor: '#1f2937',
-    fontSize: '0.875rem',
-    borderRadius: '0px',
+    backgroundColor: "#8baaca",
+    textColor: "#cbd8ea",
+    fontSize: "15px",
+    borderRadius: "10px",
   },
 };
 
-// Additional Stories
-export const CustomStyles: Story = {
+export const WithCustomText: Story = {
   args: {
-    backgroundColor: "rgba(104, 80, 165, 1)", // Light blue background
-    textColor: "#46a493", // Dark teal text
-    fontSize: "15px", // Larger font size
-    borderRadius: "150px", // Rounded corners
+    backgroundColor: "#ffcc00",
+    textColor: "#333",
+    fontSize: "1rem",
+    borderRadius: "5px",
+    titleText: "Custom Footer Title",  // Custom title text
+    subtitleText: "Custom subtitle for the footer",  // Custom subtitle text
   },
 };

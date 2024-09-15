@@ -1,10 +1,10 @@
-import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import BackButton from './BackButton';
 import { MemoryRouter } from 'react-router-dom';
 
 const meta: Meta<typeof BackButton> = {
   title: 'Components/BackButton',
+  tags: ['autodocs'],
   component: BackButton,
   decorators: [
     (Story) => (
@@ -15,10 +15,14 @@ const meta: Meta<typeof BackButton> = {
   ],
   argTypes: {
     bgColor: {
-      control: 'select',
-      options: ['bg-red', 'bg-blue', 'bg-green'],
-      defaultValue: 'bg-red',
+      control: 'color',
+      defaultValue: '#ff0000',
       description: 'Background color of the button',
+    },
+    fontColor: {
+      control: 'color',
+      defaultValue: '#ffffff',
+      description: 'Font color of the button text',
     },
     fontSize: {
       control: 'select',
@@ -26,6 +30,11 @@ const meta: Meta<typeof BackButton> = {
       defaultValue: 'text-base',
       description: 'Font size of the button text',
     },
+    children: {
+      control: 'text',
+      defaultValue: 'Back',
+      description: 'Content of the button',
+    }
   },
 };
 
@@ -35,21 +44,27 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    bgColor: 'bg-red',
+    bgColor: '#ff0000',
+    fontColor: '#ffffff',
     fontSize: 'text-base',
+    children: 'Back', 
   },
 };
 
 export const LargeButton: Story = {
   args: {
-    bgColor: 'bg-blue',
+    bgColor: '#0000ff',
+    fontColor: '#ffffff',
     fontSize: 'text-lg',
+    children: 'Next', 
   },
 };
 
 export const SmallButton: Story = {
   args: {
-    bgColor: 'bg-green',
+    bgColor: '#00ff00',
+    fontColor: '#000000', 
     fontSize: 'text-sm',
+    children: 'Submit', 
   },
 };

@@ -1,22 +1,25 @@
-import React, { memo } from 'react';
+import React, { memo, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import './BackButton.css';
 
 interface BackButtonProps {
-  bgColor?: 'bg-red' | 'bg-blue' | 'bg-green';
+  bgColor?: string;
+  fontColor?: string; 
   fontSize?: 'text-sm' | 'text-base' | 'text-lg' | 'text-xl';
+  children?: ReactNode;
 }
 
-const BackButton: React.FC<BackButtonProps> = ({ bgColor = 'bg-red', fontSize = 'text-base' }) => {
-  const buttonClasses = `back-button ${bgColor} ${fontSize}`;
+const BackButton: React.FC<BackButtonProps> = ({ bgColor = '#ff0000', fontColor = '#ffffff', fontSize = 'text-base', children = 'Back' }) => {
+  const buttonClasses = `back-button ${fontSize}`;
 
   return (
     <Link
       to="/"
       className={buttonClasses}
+      style={{ backgroundColor: bgColor, color: fontColor }}
       aria-label="Go back to the previous page"
     >
-      Back
+      {children}
     </Link>
   );
 };
